@@ -1,10 +1,10 @@
 export const MODELS = [
   {
-    id: "nvidia/nemotron-3.5-lightning:free",
-    name: "Nemotron 3.5 Lightning",
-    provider: "NVIDIA",
-    badge: "N",
-    accent: "#76b900",
+    id: "qwen/qwen3.8-27b:free",
+    name: "Qwen3.8 27B",
+    provider: "Qwen",
+    badge: "Q",
+    accent: "#6366f1",
   },
   {
     id: "google/gemma-4-26b-a4b-it:free",
@@ -13,17 +13,21 @@ export const MODELS = [
     badge: "G",
     accent: "#4285f4",
   },
-  {
-    id: "minimax/minimax-m3:free",
-    name: "MiniMax M3",
-    provider: "MiniMax",
-    badge: "M",
-    accent: "#ef4444",
-  },
 ] as const;
 
 export type ModelId = (typeof MODELS)[number]["id"];
 
-export const DEFAULT_MODEL: ModelId = MODELS[0].id;
+export const DEFAULT_MODEL: ModelId = "qwen/qwen3.8-27b:free";
+
+export const MODES = [
+  { id: "auto", name: "Auto" },
+  { id: "concept-explanation", name: "Concept explanation" },
+  { id: "argument-drafting", name: "Argument drafting" },
+  { id: "case-summary", name: "Case summary" },
+] as const;
+
+export type ModeId = (typeof MODES)[number]["id"];
+
+export const DEFAULT_MODE: ModeId = "auto";
 
 export const ALLOWED_MODEL_IDS = new Set<string>(MODELS.map((m) => m.id));

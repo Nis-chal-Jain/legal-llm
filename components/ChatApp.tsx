@@ -2,7 +2,14 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import AssistantReply from "@/components/AssistantReply";
-import { DEFAULT_MODEL, MODELS, type ModelId } from "@/lib/models";
+import {
+  DEFAULT_MODE,
+  DEFAULT_MODEL,
+  MODES,
+  MODELS,
+  type ModeId,
+  type ModelId,
+} from "@/lib/models";
 import { separateThinkingAndAnswer } from "@/lib/thinking";
 
 type Role = "user" | "assistant";
@@ -28,6 +35,7 @@ function formatSize(bytes: number) {
 
 export default function ChatApp() {
   const [model, setModel] = useState<ModelId>(DEFAULT_MODEL);
+  const [mode, setMode] = useState<ModeId>(DEFAULT_MODE);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [files, setFiles] = useState<UploadedFile[]>([]);
@@ -246,6 +254,41 @@ export default function ChatApp() {
               </button>
             );
           })}
+
+          <div className="pt-4">
+            <p className="px-1 text-[13px] font-medium text-zinc-800">Mode</p>
+            <p className="mt-0.5 px-1 text-xs text-muted">Choose one.</p>
+            <div className="mt-2 space-y-1.5" role="radiogroup" aria-label="Mode">
+              {MODES.map((item) => {
+                const active = item.id === mode;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    onClick={() => setMode(item.id)}
+                    className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left text-sm transition ${
+                      active
+                        ? "border-blue-200 bg-accent-soft font-medium"
+                        : "border-transparent text-zinc-700 hover:bg-zinc-50"
+                    }`}
+                  >
+                    <span
+                      className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
+                        active ? "border-accent" : "border-zinc-300"
+                      }`}
+                    >
+                      {active ? (
+                        <span className="h-2 w-2 rounded-full bg-accent" />
+                      ) : null}
+                    </span>
+                    {item.name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         <div className="border-t border-border p-4">
