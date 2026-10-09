@@ -1,17 +1,17 @@
 export const MODELS = [
   {
-    id: "qwen/qwen3.8-27b:free",
-    name: "Qwen3.8 27B",
-    provider: "Qwen",
-    badge: "Q",
-    accent: "#6366f1",
+    id: "nvidia/nemotron-3-ultra-550b-a55b:free",
+    name: "Nemotron 3 Ultra 550B",
+    provider: "NVIDIA",
+    badge: "N",
+    accent: "#21c55d",
   },
   {
-    id: "google/gemma-4-26b-a4b-it:free",
-    name: "Gemma 4 26B",
-    provider: "Google",
-    badge: "G",
-    accent: "#4285f4",
+    id: "cohere/north-mini-code:free",
+    name: "North Mini Code",
+    provider: "Cohere",
+    badge: "C",
+    accent: "red",
   },
 ] as const;
 
