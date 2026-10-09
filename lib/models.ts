@@ -17,7 +17,7 @@ export const MODELS = [
 
 export type ModelId = (typeof MODELS)[number]["id"];
 
-export const DEFAULT_MODEL: ModelId = "qwen/qwen3.8-27b:free";
+export const DEFAULT_MODEL: ModelId = "nvidia/nemotron-3-ultra-550b-a55b:free";
 
 export const MODES = [
   { id: "auto", name: "Auto" },
